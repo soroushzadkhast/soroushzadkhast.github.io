@@ -8,7 +8,17 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; display: flex; min-height: 100vh; }
+    /* Animation Styles */
+section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
     /* Sidebar */
     nav {
       width: 250px;
@@ -124,6 +134,24 @@
     <p>Get in touch with me at <a href="mailto:yourname@example.com">yourname@example.com</a></p>
   </section>
 </main>
+
+<script>
+  const sections = document.querySelectorAll('section');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+</script>
 
 </body>
 </html>
