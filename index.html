@@ -216,7 +216,7 @@ section.show {
  -->
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -595,3 +595,222 @@ section.show {
 
 
 
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; min-height: 100vh; }
+
+    /* Animation Styles */
+    section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sidebar (Desktop) */
+    nav {
+      width: 250px;
+      background: #f4f4f4;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: fixed;
+      height: 100%;
+      transition: transform 0.3s ease-in-out;
+    }
+    nav h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    nav ul {
+      list-style: none;
+    }
+    nav ul li {
+      margin: 1.5rem 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #555;
+      font-weight: 600;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: #000;
+      border-bottom: 2px solid #000;
+      padding-bottom: 2px;
+    }
+    nav footer {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 2rem;
+    }
+
+    /* Main Content */
+    main {
+      margin-left: 250px;
+      padding: 2rem;
+      background: #fff;
+      transition: margin-left 0.3s ease-in-out;
+    }
+    section {
+      margin-bottom: 100px;
+    }
+    section h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #333;
+    }
+    section p {
+      font-size: 1rem;
+      color: #666;
+      max-width: 600px;
+    }
+
+    /* Hamburger Menu (Mobile) */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background-color: #f4f4f4;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        transform: translateX(-100%);
+        width: 200px;
+        height: 100vh;
+        z-index: 1000;
+      }
+      nav.open {
+        transform: translateX(0);
+      }
+      main {
+        margin-left: 0;
+        padding: 2rem 1rem;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Hamburger Button -->
+<button class="menu-toggle" id="menu-toggle">&#9776;</button>
+
+<nav id="sidebar">
+  <div>
+    <h1>yourname.</h1>
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#photography">Photography</a></li>
+      <li><a href="#travel">Travel</a></li>
+      <li><a href="#fashion">Fashion</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <footer>
+    &copy; 2025 Your Name
+  </footer>
+</nav>
+
+<main>
+  <section id="home">
+    <h2>Hello, I'm [Your Name]</h2>
+    <p>Welcome to my portfolio! I am passionate about web design, photography, and storytelling.</p>
+  </section>
+
+  <section id="photography">
+    <h2>Photography</h2>
+    <p>Photography is a way for me to capture the beautiful moments and details of life.</p>
+  </section>
+
+  <section id="travel">
+    <h2>Travel</h2>
+    <p>Exploring the world has given me countless experiences and memories worth sharing.</p>
+  </section>
+
+  <section id="fashion">
+    <h2>Fashion</h2>
+    <p>I love expressing creativity through fashion and style.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm a designer, dreamer, and doer. I believe in living life to the fullest and creating meaningful work.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Get in touch with me at <a href="mailto:yourname@example.com">yourname@example.com</a></p>
+  </section>
+</main>
+
+<script>
+  // Section reveal on scroll
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  // Hamburger menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const sidebar = document.getElementById('sidebar');
+
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+
+  // Close sidebar when clicking a link (mobile)
+  document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+
+ 
